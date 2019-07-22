@@ -24,5 +24,5 @@ var MovieSchema = new Schema({
 // Creates model in mongoose
 var Movie = mongoose.model("Movie", MovieSchema);
 
-// Export the Article Model
-module.exports = Article;
+// Export the Movie Model
+module.exports = Movie;
