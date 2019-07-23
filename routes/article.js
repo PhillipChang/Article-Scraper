@@ -5,7 +5,7 @@ var axios = require("axios");
 var cheerio = require ("cheerio");
 
 // Require all models
-var db = require("./models");
+var db = require("../models");
 
 // Routes
 
@@ -92,3 +92,4 @@ app.get("/scrape", function(req, res) {
       });
   });
   
+  module.exports = app;
