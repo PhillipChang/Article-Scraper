@@ -1,1 +1,1 @@
-# RottenTomatoes-Scraper
+# Article-Scraper
