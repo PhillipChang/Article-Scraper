@@ -9,6 +9,12 @@ var db = require("../models");
 
 // Routes
 
+// Landing Page
+
+app.get("/", function(req,res) {
+    res.render("index");
+});
+
 // A GET route for scraping the Rotten Tomatoes website
 app.get("/scrape", function(req, res) {
     // First, we grab the body of the html with axios
@@ -52,7 +58,6 @@ app.get("/scrape", function(req, res) {
     db.Article.find({})
       .then(function(dbArticle) {
         // If we were able to successfully find Articles, send them back to the client
-        
         console.log("server",dbArticle);
         res.json(dbArticle);
       })

@@ -27,7 +27,7 @@ var routes = require("./routes/article.js");
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/rottenTomatoes", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/echoScraper", { useNewUrlParser: true });
 
 
 // Start the server
