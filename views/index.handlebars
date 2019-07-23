@@ -1,11 +1,16 @@
-    <div id="wrapper">
     <h1>Article Scraper </h1>
       <div id="articles">
-             <div class="row">
                  {{#each article}}
                     {{> articles-block}}
                  {{/each}}
                 </div>
-        </div>
-      <div id="notes"></div>
+
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            </div>
+            <div class="modal-footer">
+                <a href="#!" id="yes" class="modal-close waves-effect waves-green btn-flat" value="1">Add Note</a>
+                <a href="#!" id="no" class="modal-close waves-effect waves-green btn-flat" value="0">Cancel</a>
+            </div>
     </div>
