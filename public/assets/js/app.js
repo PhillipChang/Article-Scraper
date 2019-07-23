@@ -8,6 +8,7 @@ $.getJSON("/articles", function(data) {
 
 //Create Notes function
 $(document).ready(function(){
+
 $(document).on("click", "#add-note", function(){
     var thisId = $(this).attr("data-id");
     $.ajax({
@@ -15,6 +16,7 @@ $(document).on("click", "#add-note", function(){
         url: "/articles/" + thisId
     })
     .then(function(data) {
+      $(".modal-content").empty();
       console.log(data);
       $(".modal-content").append("<h6> Would you like to add a Note to: " + data.title + " ?</h6>");
       // An input to enter a new title
@@ -30,28 +32,44 @@ $(document).on("click", "#add-note", function(){
         $("#bodyinput").val(data.note.body);
       }
     });
+    $(document).on("click", "#save", function() {
+    
+      // Run a POST request to change the note, using what's entered in the inputs
+      $.ajax({
+        method: "POST",
+        url: "/articles/" + thisId,
+        data: {
+          title: data.title,
+          body: $("#bodyinput").val()
+        }
+      })
+        // .then(function(data) {
+        //   // $("#modal-content").empty();
+        // });
+    
+      $("#titleinput").val("");
+      $("#bodyinput").val("");
+    });
+
+
+    // Saved Notes
+    $(document).on("click", "#savedNote", function() {
+    
+      // Run a POST request to change the note, using what's entered in the inputs
+      $.ajax({
+        method: "GET",
+        url: "/articles/" + thisId,
+      })
+        .then(function(data) {
+          $("#modal-content").empty();
+          $("#modal-content").append("<p> Notes: " +data.note.body);
+        });
+    });
 });
 $('.modal').modal();
-});
+
 
 
 // To save notes
-$(document).on("click", "#saveNote", function() {
-    var thisId = $(this).attr("data-id");
-  
-    // Run a POST request to change the note, using what's entered in the inputs
-    $.ajax({
-      method: "POST",
-      url: "/articles/" + thisId,
-      data: {
-        title: $("#titleinput").val(),
-        body: $("#bodyinput").val()
-      }
-    })
-      .then(function(data) {
-        $("#modal-content").empty();
-      });
-  
-    $("#titleinput").val("");
-    $("#bodyinput").val("");
-  });
+
+});
