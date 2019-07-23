@@ -33,3 +33,26 @@ $(document).on("click", "p", function(){
       }
     });
 });
+
+
+// To save notes
+$(document).on("click", "#savenote", function() {
+    var thisId = $(this).attr("data-id");
+  
+    // Run a POST request to change the note, using what's entered in the inputs
+    $.ajax({
+      method: "POST",
+      url: "/articles/" + thisId,
+      data: {
+        title: $("#titleinput").val(),
+        body: $("#bodyinput").val()
+      }
+    })
+      .then(function(data) {
+        $("#notes").empty();
+      });
+  
+    $("#titleinput").val("");
+    $("#bodyinput").val("");
+  });
+  
