@@ -12,7 +12,13 @@ var db = require("../models");
 // Landing Page
 
 app.get("/", function(req,res) {
-    res.render("index");
+    db.Article.find({})
+      .then(function(dbArticle) {
+          var article = {
+              article: dbArticle
+          };
+    res.render("index",article);
+});
 });
 
 // A GET route for scraping the Rotten Tomatoes website

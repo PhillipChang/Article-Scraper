@@ -1,5 +1,11 @@
     <div id="wrapper">
     <h1>Article Scraper </h1>
-      <div id="articles">{{#each dbArticle}}{{/each}}</div>
+      <div id="articles">
+             <div class="row">
+                 {{#each article}}
+                    {{> articles-block}}
+                 {{/each}}
+                </div>
+        </div>
       <div id="notes"></div>
     </div>
