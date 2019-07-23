@@ -27,7 +27,9 @@ var routes = require("./routes/article.js");
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/echoScraper", { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/echoScraper";
+
+mongoose.connect(MONGODB_URI);
 
 
 // Start the server
