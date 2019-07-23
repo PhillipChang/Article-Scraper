@@ -1,7 +1,8 @@
-// Grab the Movies as a json
-$.getJSON("/movies", function(data) {
+// Grab the articles as a json
+$.getJSON("/articles", function(data) {
+    console.log("client" , data);
     for (var i = 0; i < data.length; i++){
-        $("#Movies").append("<p data-id='"+data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+        $("#articles").append("<p data-id='"+data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
     }
 });
 
@@ -12,7 +13,7 @@ $.getJSON("/movies", function(data) {
 
 //     $.ajax({
 //         method:"GET",
-//         url: "/movies/" + thisId
+//         url: "/articles/" + thisId
 //     })
 //     .then(function(data) {
 //         console.log(data);

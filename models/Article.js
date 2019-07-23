@@ -3,7 +3,7 @@ var mongoose = require ("mongoose");
 // Schema constructor
 var Schema = mongoose.Schema;
 
-var MovieSchema = new Schema({
+var ArticleSchema = new Schema({
 
     title: {
         type: String,
@@ -22,7 +22,7 @@ var MovieSchema = new Schema({
 });
 
 // Creates model in mongoose
-var Movie = mongoose.model("Movie", MovieSchema);
+var Article = mongoose.model("Article", ArticleSchema);
 
-// Export the Movie Model
-module.exports = Movie;
+// Export the Article Model
+module.exports = Article;
