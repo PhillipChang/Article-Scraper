@@ -1,5 +1,9 @@
-    <h1>Saved Articles</h1> 
-
+    <h1>Saved Articles</h1> <a href="/" <button class="btn">Home</button></a>
+    <div id="articles">
+                 {{#each article}}
+                    {{> articles-block}}
+                 {{/each}}
+                </div>
     <div id="articles">
          {{#each article}}
          {{#if}}

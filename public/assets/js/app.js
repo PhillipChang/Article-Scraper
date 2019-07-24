@@ -26,13 +26,13 @@ $(document).on("click", "#add-note", function(){
         url: "/articles/" + thisId
     })
     .then(function(data) {
-      $(".modal-content").empty();
+      $("#modal-content-add").empty();
       console.log(data);
-      $(".modal-content").append("<h6> Would you like to add a Note to: " + data.title + " ?</h6>");
+      $("#modal-content-add").append("<h6> Would you like to add a Note to:</h6>");
       // An input to enter a new title
-      $(".modal-content").append("<input id='titleinput' name='title' >");
+      $("#modal-content-add").append("<input id='titleinput' name='title' >");
       // A textarea to add a new note body
-      $(".modal-content").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#modal-content-add").append("<textarea id='bodyinput' name='body'></textarea>");
       // A button to submit a new note, with the id of the article saved to it
       // If there's a note in the article
       if (data.note) {
@@ -58,7 +58,7 @@ $(document).on("click", "#add-note", function(){
         // });
     
       $("#titleinput").val("");
-      $("<input>").val("");
+      $("#bodyinput").val("");
     });
 
 });
@@ -66,7 +66,6 @@ $('.modal').modal();
 
     // View Notes
     $(document).on("click", "#view-note", function() {
-      $(".modal-content-view").empty();
       var thisId = $(this).attr("data-id");
       // Run a POST request to change the note, using what's entered in the inputs
       $.ajax({
@@ -74,15 +73,18 @@ $('.modal').modal();
         url: "/articles/" + thisId,
       })
         .then(function(data) {
-          for (var i = 0; i<data.length; i++){
-          $("#modal-content-view").append("<p> Notes: " +data.note.body);
-          }
+          console.log(data);
+          $("#modal-content-view").append("<h6> Title: " + data.title + "</h6>");
+            $("#modal-content-view").append("<h6> Notes: " + data.note.body+ "</h6>");
         });
-    });
-  $('#noteModal').modal();
+      });
+      $('.modal').modal();
 
 
+// Modals
+$(document).on("click", ".modal-close", function(event) {
+  $("#modal-content-view").empty();
+});
 // To save articles
-
 
 });
