@@ -6,8 +6,15 @@ var Schema = mongoose.Schema;
 // Model
 var NoteSchema = new Schema({
 
-    title: String,
-    body: String
+    title: {
+    type: String,
+    required:true
+    },
+
+    body: {
+    type: String,
+    required:true
+    }
 });
 
 // Create Model into Mongoose Model

@@ -73,6 +73,18 @@ app.get("/scrape", function(req, res) {
         res.json(err);
       });
   });
+  // Route to get saved articles from DB
+  app.get("/articles/saved", function(req, res) {
+    // Grab every document in the Articles collection
+    db.Article.find({})
+      .then(function(dbArticle) {
+        res.render("saved",{article: dbArticle});
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
   
   // Route to grab specific article
   app.get("/articles/:id", function(req, res) {
@@ -93,10 +105,24 @@ app.get("/scrape", function(req, res) {
   
     db.Note.create(req.body)
       .then(function(dbNote) {
-        return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { note: dbNote._id } }, { new: true });
       })
-      .then(function(dbArticle) {
-        res.json(dbArticle);
+      .then(function() {
+        res.json(dbNote.data);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
+
+  // save articles
+  app.put("/articles/:id", function(req, res) {
+    db.Article.findOne({ _id: req.params.id }).then((save) => {
+      db.Article.updateOne({ _id: req.params.id }, { saved: !save.saved })
+      .then(function(){
+        res.redirect("/");
+      });
       })
       .catch(function(err) {
         // If an error occurred, send it to the client

@@ -1,10 +1,13 @@
-    <h1>Article Scraper</h1> <button class="btn" id="scrape">Scrape Most Recent Articles</button>
+    <h1>Article Scraper</h1> 
+    <button class="btn" id="scrape">Scrape Most Recent Articles</button>
+    <a href="/articles/saved" <button class="btn" id="saved">Saved Articles</button></a>
       <div id="articles">
                  {{#each article}}
+                 {{#unless saved}}
                     {{> articles-block}}
+                {{/unless}}
                  {{/each}}
                 </div>
-
 
     <div id="myModal" class="modal">
         <div class="modal-content" id="modal-content-add">
