@@ -3,11 +3,9 @@
       <div class="card blue-grey darken-1">
         <div class="card-content white-text">
           <span class="card-title">{{title}}</span>
-          <a href="{{link}}">{{link}}</a>
+          <a id="link" href="{{link}}">{{link}}</a>
         </div>
         <div class="card-action">
-          <button class="btn modal-trigger"  data-target="myModal" href="#myModal" id="add-note" data-id="{{_id}}" data-title="{{title}}" data-link="{{link}}">Add Note</button>
-          <button class="btn modal-trigger"  data-target="noteModal" href="#noteModal" id="view-note" data-id="{{_id}}" data-title="{{title}}" data-link="{{link}}">View Notes</button>
           <a href="/" <button class="btn change-save" data-id="{{_id}}" data-title="{{title}}" data-link="{{link}}" data-saved="{{saved}}">Save Article</button></a>
         </div>
       </div>

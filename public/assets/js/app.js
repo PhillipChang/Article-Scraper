@@ -1,24 +1,14 @@
 $(document).ready(function(){
-// Grab the articles as a json
-// $.getJSON("/articles", function(data) {
-//     console.log("client" , data);
-//     for (var i = 0; i < data.length; i++){
-//         $("#articles").append("<p data-id='"+data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-//     }
-// });
 
 $("#scrape").on("click", function(event) {
     $("#scrape").hide('slow');  
     $.get("/scrape",function(data){
     if(data.status) window.location.href = '/';
-    console.log("this happened")
     });
 });
 $("#saved").on("click", function(event) {
     $("#saved").hide('slow');  
     $.get("/articles/saved",function(data){
-      // window.location.href = '/articles/saved'
-    console.log("this happened")
     });
 });
 
@@ -40,13 +30,6 @@ $(document).on("click", "#add-note", function(){
       $("#modal-content-add").append("<textarea id='bodyinput' name='body'></textarea>");
       var body= ($("#bodyinput").val());
       console.log(body);
-      // If there's a note in the article
-      // if (data.note) {
-      //   // Place the title of the note in the title input
-      //   $("#titleinput").val(data.note.title);
-      //   // Place the body of the note in the body textarea
-      //   $("#bodyinput").val(data.note.body);
-      // }
     });
     $(document).on("click", "#save", function() {
     console.log("body", ($("#bodyinput").val()))
@@ -59,8 +42,6 @@ $(document).on("click", "#add-note", function(){
           body: $("#bodyinput").val()
         }
       })    
-    // $("#titleinput").val("");
-    // $("#bodyinput").val("");
   });
   });
 $('.modal').modal();
@@ -85,7 +66,6 @@ $('.modal').modal();
 // Modals
 $(document).on("click", ".modal-close", function(event) {
   $("#modal-content-view").empty();
-  // $("#modal-content-add").empty();
 });
 
 // To save articles
@@ -100,7 +80,5 @@ $(document).on("click", ".change-save", function(event) {
     }
   });
 });
-
-//
 
 });

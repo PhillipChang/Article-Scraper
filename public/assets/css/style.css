@@ -1,4 +1,29 @@
-#articles {
-    /* display:flex;
-    justify-content: flex-start; */
+html{
+    background: url("../images/background.png") no-repeat center  center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o--background-size:cover;
+    background-size: cover;
+}
+h1 {
+    text-align:center;
+    padding: 5%;
+    font-family: cursive;
+    font-weight: bold;
+    background-color: slategray;
+    border-radius: 50%;
+    opacity: 0.75;
+}
+
+.nav-btn, .home{
+    padding:2%;
+    text-align:center;
+}
+
+#saved {
+    margin-left:2%;
+}
+
+#link{
+    color:black;
 }

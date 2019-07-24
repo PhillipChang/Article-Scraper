@@ -11,10 +11,10 @@ var NoteSchema = new Schema({
     required:true
     },
 
-    body: {
+    body: [{
     type: String,
     required:true
-    }
+    }]
 });
 
 // Create Model into Mongoose Model
