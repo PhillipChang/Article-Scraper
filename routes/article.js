@@ -12,6 +12,7 @@ var db = require("../models");
 // Landing Page
 
 app.get("/", function(req,res) {
+  console.log("got here")
     db.Article.find({})
       .then(function(dbArticle) {
           var article = {
@@ -53,8 +54,8 @@ app.get("/scrape", function(req, res) {
             console.log(err);
           });
       });
-      // console.log(result);
-     location.reload();
+      }).then(() => {
+        res.json({status: true});
       });
     });
   

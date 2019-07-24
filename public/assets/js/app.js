@@ -1,16 +1,26 @@
+$(document).ready(function(){
 // Grab the articles as a json
-$.getJSON("/articles", function(data) {
-    console.log("client" , data);
-    for (var i = 0; i < data.length; i++){
-        $("#articles").append("<p data-id='"+data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
-    }
+// $.getJSON("/articles", function(data) {
+//     console.log("client" , data);
+//     for (var i = 0; i < data.length; i++){
+//         $("#articles").append("<p data-id='"+data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
+//     }
+// });
+
+$("#scrape").on("click", function(event) {
+    $("#scrape").hide('slow');  
+    $.get("/scrape",function(data){
+   
+    if(data.status) window.location.href = '/';
+    console.log("this happened")
+    });
 });
 
 //Create Notes function
-$(document).ready(function(){
 
 $(document).on("click", "#add-note", function(){
     var thisId = $(this).attr("data-id");
+    var title = $(this).attr("data-title");
     $.ajax({
         method:"GET",
         url: "/articles/" + thisId
@@ -39,7 +49,7 @@ $(document).on("click", "#add-note", function(){
         method: "POST",
         url: "/articles/" + thisId,
         data: {
-          title: data.title,
+          title: title,
           body: $("#bodyinput").val()
         }
       })
@@ -48,28 +58,31 @@ $(document).on("click", "#add-note", function(){
         // });
     
       $("#titleinput").val("");
-      $("#bodyinput").val("");
+      $("<input>").val("");
     });
 
+});
+$('.modal').modal();
 
-    // Saved Notes
-    $(document).on("click", "#savedNote", function() {
-    
+    // View Notes
+    $(document).on("click", "#view-note", function() {
+      $(".modal-content-view").empty();
+      var thisId = $(this).attr("data-id");
       // Run a POST request to change the note, using what's entered in the inputs
       $.ajax({
         method: "GET",
         url: "/articles/" + thisId,
       })
         .then(function(data) {
-          $("#modal-content").empty();
-          $("#modal-content").append("<p> Notes: " +data.note.body);
+          for (var i = 0; i<data.length; i++){
+          $("#modal-content-view").append("<p> Notes: " +data.note.body);
+          }
         });
     });
-});
-$('.modal').modal();
+  $('#noteModal').modal();
 
 
+// To save articles
 
-// To save notes
 
 });
