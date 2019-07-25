@@ -1,4 +1,4 @@
-var mongoose = require ("mongoose");
+var mongoose = require("mongoose");
 
 // Schema constructor
 var Schema = mongoose.Schema;
@@ -14,11 +14,10 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
-
-    note: [{
+    note: {
         type: Schema.Types.ObjectId,
         ref: "Note"
-    }],
+    },
 
     saved: {
         type: Boolean,
